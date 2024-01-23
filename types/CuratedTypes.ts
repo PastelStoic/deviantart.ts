@@ -1,4 +1,4 @@
-import { DeviantArtDeviation, DeviantArtUser } from "./index.ts";
+import { DeviantArtDeviation, DeviantArtUser } from "./mod.ts";
 
 export interface DeviantArtCuratedTags {
   results: {
