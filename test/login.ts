@@ -1,6 +1,6 @@
 import DeviantArt from "../deviantart.ts";
 import { load } from "https://deno.land/std@0.212.0/dotenv/mod.ts";
-import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
+import { z } from "zod";
 
 const loadedEnv = await load();
 

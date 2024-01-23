@@ -1,5 +1,5 @@
 import api from "../api/api.ts";
-import { DeviantArtStash, DeviantArtStashItem } from "../types/index.ts";
+import { DeviantArtStash, DeviantArtStashItem } from "../types/mod.ts";
 
 export class Stash {
   private readonly api: api;

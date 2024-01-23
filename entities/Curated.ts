@@ -1,5 +1,5 @@
 import api from "../api/api.ts";
-import { DeviantArtCuratedTags } from "../types/index.ts";
+import { DeviantArtCuratedTags } from "../types/mod.ts";
 
 export class Curated {
   private readonly api: api;
@@ -11,7 +11,7 @@ export class Curated {
    * Fetches featured tags.
    */
   public tags = async (
-    params?: { ext_preload?: boolean; mature_content?: boolean },
+    params: { ext_preload?: boolean; mature_content?: boolean },
   ) => {
     const result = await this.api.get(`api/v1/oauth2/curated/tags`, { params });
     return result as Promise<DeviantArtCuratedTags>;

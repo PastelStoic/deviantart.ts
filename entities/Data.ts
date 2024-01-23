@@ -10,7 +10,7 @@ export class Data {
   /**
    * Returns a list of all countries.
    */
-  public countries = async (params?: { mature_content?: boolean }) => {
+  public countries = async (params: { mature_content?: boolean }) => {
     const result = await this.api.get(`api/v1/oauth2/data/countries`, {
       params,
     });
@@ -22,7 +22,7 @@ export class Data {
   /**
    * Returns the privacy policy.
    */
-  public privacy = async (params?: { mature_content?: boolean }) => {
+  public privacy = async (params: { mature_content?: boolean }) => {
     const result = await this.api.get(`api/v1/oauth2/data/privacy`, { params });
     return result as Promise<DeviantArtData>;
   };
@@ -30,7 +30,7 @@ export class Data {
   /**
    * Returns the submission guidelines.
    */
-  public submission = async (params?: { mature_content?: boolean }) => {
+  public submission = async (params: { mature_content?: boolean }) => {
     const result = await this.api.get(`api/v1/oauth2/data/submission`, {
       params,
     });
@@ -40,7 +40,7 @@ export class Data {
   /**
    * Returns the terms of service.
    */
-  public tos = async (params?: { mature_content?: boolean }) => {
+  public tos = async (params: { mature_content?: boolean }) => {
     const result = await this.api.get(`api/v1/oauth2/data/tos`, { params });
     return result as Promise<DeviantArtData>;
   };

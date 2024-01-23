@@ -62,7 +62,7 @@ export class Browse {
    * Fetches daily deviations for today or a certain date if it is specified.
    */
   public daily = async (
-    params?: { date?: string; expand?: string; mature_content?: boolean },
+    params: { date?: string; expand?: string; mature_content?: boolean },
   ) => {
     const result = await this.api.get(`api/v1/oauth2/browse/dailydeviations`, {
       params,
@@ -121,7 +121,7 @@ export class Browse {
    * Searches for newest deviations.
    */
   public newest = async (
-    params?: {
+    params: {
       category_path?: string;
       q?: string;
       offset?: number;
@@ -140,7 +140,7 @@ export class Browse {
    * Searches for popular deviations.
    */
   public popular = async (
-    params?: {
+    params: {
       category_path?: string;
       q?: string;
       timerange?: string;
@@ -160,7 +160,7 @@ export class Browse {
    * Searches for hot deviations.
    */
   public hot = async (
-    params?: {
+    params: {
       category_path?: string;
       offset?: number;
       limit?: number;
@@ -176,7 +176,7 @@ export class Browse {
    * Searches for undiscovered deviations.
    */
   public undiscovered = async (
-    params?: {
+    params: {
       category_path?: string;
       offset?: number;
       limit?: number;

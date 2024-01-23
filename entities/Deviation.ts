@@ -6,7 +6,7 @@ import {
   DeviationEmbeddedContent,
   DeviationMetaData,
   DeviationWhoFaved,
-} from "../types/index.ts";
+} from "../types/mod.ts";
 
 export class Deviation {
   private readonly api: api;

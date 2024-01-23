@@ -6,7 +6,7 @@ import {
   DeviantArtUserProfile,
   DeviantArtUserStatuses,
   DeviantArtWatchers,
-} from "../types/index.ts";
+} from "../types/mod.ts";
 
 export class User {
   private readonly api: api;
@@ -18,7 +18,7 @@ export class User {
    * Gets all of the friends of the specified user, or yourself if none is specified.
    */
   public friends = async (
-    params?: {
+    params: {
       username?: string;
       offset?: number;
       limit?: number;
@@ -26,9 +26,9 @@ export class User {
       mature_content?: boolean;
     },
   ) => {
-    if (!params?.username) params.username = "";
+    if (!params.username) params.username = "";
     const result = await this.api.get(
-      `api/v1/oauth2/user/friends/${params?.username}`,
+      `api/v1/oauth2/user/friends/${params.username}`,
       { params },
     );
     return result as Promise<DeviantArtUserFriends>;
@@ -50,7 +50,7 @@ export class User {
    * Gets all of the statuses of the specified user.
    */
   public statuses = async (
-    params?: {
+    params: {
       username?: string;
       offset?: number;
       limit?: number;
@@ -80,7 +80,7 @@ export class User {
    * Fetches the profile of the specified user.
    */
   public profile = async (
-    params?: {
+    params: {
       username?: string;
       ext_collections?: boolean;
       ext_galleries?: boolean;
@@ -88,9 +88,9 @@ export class User {
       mature_content?: boolean;
     },
   ) => {
-    if (!params?.username) params.username = "";
+    if (!params.username) params.username = "";
     const result = await this.api.get(
-      `api/v1/oauth2/user/profile/${params?.username}`,
+      `api/v1/oauth2/user/profile/${params.username}`,
       { params },
     );
     return result as Promise<DeviantArtUserProfile>;
@@ -100,7 +100,7 @@ export class User {
    * Fetches all the watchers of the specified user.
    */
   public watchers = async (
-    params?: {
+    params: {
       username?: string;
       offset?: number;
       limit?: number;
@@ -108,9 +108,9 @@ export class User {
       mature_content?: boolean;
     },
   ) => {
-    if (!params?.username) params.username = "";
+    if (!params.username) params.username = "";
     const result = await this.api.get(
-      `api/v1/oauth2/user/watchers/${params?.username}`,
+      `api/v1/oauth2/user/watchers/${params.username}`,
       { params },
     );
     return result as Promise<DeviantArtWatchers>;

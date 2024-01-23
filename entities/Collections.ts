@@ -1,5 +1,5 @@
 import api from "../api/api.ts";
-import { DeviantArtFolders, DeviantArtSearchResults } from "../types/index.ts";
+import { DeviantArtFolders, DeviantArtSearchResults } from "../types/mod.ts";
 
 export class Collections {
   private readonly api: api;
@@ -31,7 +31,7 @@ export class Collections {
    * Fetches all the folders of the specified user. Defaults to the authenticated user if none is specified.
    */
   public folders = async (
-    params?: {
+    params: {
       username?: string;
       ext_preload?: boolean;
       calculate_size?: boolean;

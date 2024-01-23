@@ -2,7 +2,7 @@ import api from "../api/api.ts";
 import {
   DeviantArtCommentContext,
   DeviantArtCommentSearch,
-} from "../types/index.ts";
+} from "../types/mod.ts";
 
 export class Comments {
   private readonly api: api;

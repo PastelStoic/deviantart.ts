@@ -3,7 +3,7 @@ import {
   DeviantArtGalleryAll,
   DeviantArtGalleryFolders,
   DeviantArtGalleryResult,
-} from "../types/index.ts";
+} from "../types/mod.ts";
 
 export class Gallery {
   private readonly api: api;
@@ -15,7 +15,7 @@ export class Gallery {
    * Gets all of the deviations in the folder, requires the folder id.
    */
   public get = async (
-    params?: {
+    params: {
       folderid?: string;
       username?: string;
       mode?: string;
@@ -25,9 +25,9 @@ export class Gallery {
       mature_content?: boolean;
     },
   ) => {
-    if (!params?.folderid) params.folderid = "";
+    if (!params.folderid) params.folderid = "";
     const result = await this.api.get(
-      `api/v1/oauth2/gallery/${params?.folderid}`,
+      `api/v1/oauth2/gallery/${params.folderid}`,
       { params },
     );
     return result as Promise<DeviantArtGalleryResult>;
@@ -37,7 +37,7 @@ export class Gallery {
    * Get all of the deviations of a certain user, yourself if none is specified.
    */
   public all = async (
-    params?: {
+    params: {
       username?: string;
       offset?: number;
       limit?: number;
@@ -53,7 +53,7 @@ export class Gallery {
    * Get all of the folders of a certain user, or yourself if none is specified.
    */
   public folders = async (
-    params?: {
+    params: {
       username?: string;
       calculate_size?: boolean;
       ext_preload?: boolean;
