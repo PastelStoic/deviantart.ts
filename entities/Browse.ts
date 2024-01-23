@@ -15,18 +15,6 @@ export class Browse {
   }
 
   /**
-   * This will fetch all of the category paths that you can use in the `category_path` parameter.
-   */
-  public categoryTree = async (
-    params: { catpath: string; mature_content?: boolean },
-  ) => {
-    const result = await this.api.get(`api/v1/oauth2/browse/categorytree`, {
-      params,
-    });
-    return result as Promise<DeviantArtCategoryTree>;
-  };
-
-  /**
    * Gets similar deviations to the one specified. Requires the deviation id.
    */
   public moreLikeThis = async (
@@ -176,7 +164,7 @@ export class Browse {
    * Searches for undiscovered deviations.
    */
   public undiscovered = async (
-    params: {
+    params?: {
       category_path?: string;
       offset?: number;
       limit?: number;
@@ -185,7 +173,7 @@ export class Browse {
     },
   ) => {
     const result = await this.api.get(`api/v1/oauth2/browse/undiscovered`, {
-      params,
+      params: params ?? {},
     });
     return result as Promise<DeviantArtSearchResults>;
   };

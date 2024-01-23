@@ -4,11 +4,6 @@ import login, { deviantArt } from "./login.ts";
 Deno.test("Browse", async (t) => {
   await login();
 
-  await t.step("should get category paths", async () => {
-    const result = await deviantArt.browse.categoryTree({ catpath: "/" });
-    assert(Object.hasOwn(result, "categories"));
-  });
-
   await t.step("should get daily deviations", async () => {
     const result = await deviantArt.browse.daily({
       date: "2019-07-03",
