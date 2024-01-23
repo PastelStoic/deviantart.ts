@@ -1,4 +1,5 @@
-import { DeviantArtUser } from "./index.ts";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
+import { DeviantArtUser } from "./mod.ts";
 
 export interface DeviantArtDeviation {
   deviationid: string;
@@ -78,6 +79,49 @@ export interface DeviantArtDeviation {
     embed_url: string;
   };
 }
+
+export const DeviationMetaDataSchema = z.object({
+  metadata: z.array(z.object({
+    deviationid: z.string(),
+    printid: z.string(),
+    author: DeviantArtUser,
+    is_watching: z.boolean(),
+    title: z.string(),
+    description: z.string(),
+    license: z.string(),
+    allows_comments: z.boolean(),
+    tags: z.array(z.object({
+      tag_name: z.string(),
+      sponsored: z.boolean(),
+      sponsor: z.string(),
+    })),
+    is_favourited: z.boolean(),
+    is_mature: z.boolean(),
+    submission: z.object({
+      creation_time: z.string(),
+      category: z.string(),
+      file_size: z.string(),
+      resolution: z.string().nullish(),
+      submitted_with: z.object({
+        app: z.string(),
+        url: z.string(),
+      }),
+    }).nullish(),
+    stats: z.object({
+      views: z.number(),
+      views_today: z.number(),
+      favourites: z.number(),
+      comments: z.number(),
+      downloads: z.number(),
+      downloads_today: z.number(),
+    }).nullish(),
+    camera: z.record(z.string()).nullish(),
+    collections: z.array(z.object({
+      folderid: z.string(),
+      name: z.string(),
+    })).nullish()
+  })),
+});
 
 export interface DeviationMetaData {
   metadata: {

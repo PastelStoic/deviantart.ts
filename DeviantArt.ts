@@ -10,8 +10,8 @@ import {
   Stash,
   User,
   Util,
-} from "./entities/index.ts";
-import { DeviantArtAuth } from "./types/index.ts";
+} from "./entities/mod.ts";
+import { DeviantArtAuth } from "./types/mod.ts";
 
 /**
  * This is the main class for interacting with the DeviantArt API.
@@ -52,5 +52,5 @@ export default class DeviantArt {
   };
 }
 
-export * from "./types/index.ts";
-export * from "./entities/index.ts";
+export * from "./types/mod.ts";
+export * from "./entities/mod.ts";
