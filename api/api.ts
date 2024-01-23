@@ -6,7 +6,8 @@ export default class Api {
   /**
    * Gets an endpoint from the DeviantArt api.
    */
-  public get = async (endpoint: string, params: { params: Record<string, string | number | boolean | undefined | string[]> }) => {
+  public get = async (endpoint: string, params?: { params: Record<string, string | number | boolean | undefined | string[]> }) => {
+    if (!params) params = {params: {}};
     params.params.access_token = this.accessToken;
     const url = new URL(apiURL + endpoint);
 

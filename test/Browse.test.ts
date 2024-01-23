@@ -1,5 +1,5 @@
 import { assert } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import login, { deviantArt } from "./login.ts";
+import login, { deviantArt, env } from "./login.ts";
 
 Deno.test("Browse", async (t) => {
   await login();
@@ -25,14 +25,14 @@ Deno.test("Browse", async (t) => {
 
   await t.step("should get more like this", async () => {
     const result = await deviantArt.browse.moreLikeThis({
-      seed: "1FA35A6D-E2CD-3CDF-1A65-410AB577BF10",
+      seed: env.DEVIANTART_TEST_DEVIATION_CONTENT,
     });
     assert(Object.hasOwn(result, "results"));
   });
 
   await t.step("should get more like this previews", async () => {
     const result = await deviantArt.browse.moreLikeThisPreview({
-      seed: "1FA35A6D-E2CD-3CDF-1A65-410AB577BF10",
+      seed: env.DEVIANTART_TEST_DEVIATION_CONTENT,
     });
     assert(Object.hasOwn(result, "author"));
   });

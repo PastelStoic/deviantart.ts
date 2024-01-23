@@ -3,7 +3,6 @@ export * from "./Gallery.ts";
 export * from "./User.ts";
 export * from "./Util.ts";
 export * from "./Browse.ts";
-export * from "./Curated.ts";
 export * from "./Stash.ts";
 export * from "./Collections.ts";
 export * from "./Comments.ts";

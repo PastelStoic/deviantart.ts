@@ -3,7 +3,6 @@ import {
   Browse,
   Collections,
   Comments,
-  Curated,
   Data,
   Deviation,
   Gallery,
@@ -23,7 +22,6 @@ export default class DeviantArt {
   public gallery = new Gallery(DeviantArt.accessToken);
   public util = new Util(DeviantArt.accessToken);
   public browse = new Browse(DeviantArt.accessToken);
-  public curated = new Curated(DeviantArt.accessToken);
   public data = new Data(DeviantArt.accessToken);
   public collections = new Collections(DeviantArt.accessToken);
   public stash = new Stash(DeviantArt.accessToken);

@@ -10,10 +10,8 @@ export class Data {
   /**
    * Returns a list of all countries.
    */
-  public countries = async (params: { mature_content?: boolean }) => {
-    const result = await this.api.get(`api/v1/oauth2/data/countries`, {
-      params,
-    });
+  public countries = async () => {
+    const result = await this.api.get(`api/v1/oauth2/data/countries`);
     return result as Promise<
       { results: Array<{ countryid: number; name: string }> }
     >;
@@ -22,26 +20,24 @@ export class Data {
   /**
    * Returns the privacy policy.
    */
-  public privacy = async (params: { mature_content?: boolean }) => {
-    const result = await this.api.get(`api/v1/oauth2/data/privacy`, { params });
+  public privacy = async () => {
+    const result = await this.api.get(`api/v1/oauth2/data/privacy`);
     return result as Promise<DeviantArtData>;
   };
 
   /**
    * Returns the submission guidelines.
    */
-  public submission = async (params: { mature_content?: boolean }) => {
-    const result = await this.api.get(`api/v1/oauth2/data/submission`, {
-      params,
-    });
+  public submission = async () => {
+    const result = await this.api.get(`api/v1/oauth2/data/submission`);
     return result as Promise<DeviantArtData>;
   };
 
   /**
    * Returns the terms of service.
    */
-  public tos = async (params: { mature_content?: boolean }) => {
-    const result = await this.api.get(`api/v1/oauth2/data/tos`, { params });
+  public tos = async () => {
+    const result = await this.api.get(`api/v1/oauth2/data/tos`);
     return result as Promise<DeviantArtData>;
   };
 }

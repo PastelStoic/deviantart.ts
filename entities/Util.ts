@@ -10,8 +10,8 @@ export class Util {
   /**
    * Sends a placebo API query to check that your access token is still valid.
    */
-  public placebo = async (params: { mature_content?: boolean }) => {
-    const result = await this.api.get(`api/v1/oauth2/placebo`, { params });
+  public placebo = async () => {
+    const result = await this.api.get(`api/v1/oauth2/placebo`);
     return result as Promise<DeviantArtPlacebo>;
   };
 }
