@@ -1,8 +1,8 @@
 import { assert } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import login, { deviantArt, env } from "./login.ts";
+import { login, env } from "./login.ts";
 
 Deno.test("Gallery", async (t) => {
-  await login();
+  const deviantArt = await login();
 
   await t.step("should get all deviations of a user", async () => {
     const result = await deviantArt.gallery.all({ username: env.DEVIANTART_TEST_USER });

@@ -14,15 +14,9 @@ const envSchema = z.object({
 
 export const env = await envSchema.parseAsync(loadedEnv);
 
-let deviantArt: DeviantArt;
-
-export default async () => {
-  if (!deviantArt) {
-    deviantArt = await DeviantArt.login(
-      env.DEVIANTART_CLIENT_ID,
-      env.DEVIANTART_CLIENT_SECRET,
-    );
-  }
-};
-
-export { deviantArt };
+export async function login() {
+  return await DeviantArt.login(
+    env.DEVIANTART_CLIENT_ID,
+    env.DEVIANTART_CLIENT_SECRET,
+  );
+}

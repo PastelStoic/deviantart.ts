@@ -1,8 +1,8 @@
 import { assert } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import login, { deviantArt } from "./login.ts";
+import { login, env } from "./login.ts";
 
 Deno.test("Collections", async (t) => {
-  await login();
+  const deviantArt = await login();
 
   await t.step("should get all user folders", async () => {
     const result = await deviantArt.collections.folders({

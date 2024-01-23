@@ -1,8 +1,8 @@
 import { assert } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import login, { deviantArt, env } from "./login.ts";
+import { login, env } from "./login.ts";
 
 Deno.test("Deviation", async (t) => {
-  await login();
+  const deviantArt = await login();
 
   await t.step("should get a deviation", async () => {
     const result = await deviantArt.deviation.get({

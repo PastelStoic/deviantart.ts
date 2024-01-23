@@ -1,8 +1,8 @@
 import { assert } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import login, { deviantArt } from "./login.ts";
+import { login, env } from "./login.ts";
 
 Deno.test("Data", async (t) => {
-  await login();
+  const deviantArt = await login();
 
   await t.step("should get countries", async () => {
     const result = await deviantArt.data.countries();
