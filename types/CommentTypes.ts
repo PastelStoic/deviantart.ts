@@ -2,7 +2,7 @@ import {
   DeviantArtDeviation,
   DeviantArtStatus,
   DeviantArtUser,
-} from "./index.ts";
+} from "./mod.ts";
 
 export interface DeviantArtComment {
   commentid: string;
