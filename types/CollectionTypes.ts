@@ -1,4 +1,4 @@
-import { DeviantArtDeviation } from "./index.ts";
+import { DeviantArtDeviation } from "./mod.ts";
 
 export interface DeviantArtFolders {
   results: Array<{
