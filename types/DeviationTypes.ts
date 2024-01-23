@@ -121,7 +121,7 @@ export interface DeviationMetaData {
       folderid: string;
       name: string;
     }>;
-  };
+  }[];
 }
 
 export interface DeviationContent {

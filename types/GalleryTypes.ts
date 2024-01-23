@@ -20,7 +20,7 @@ export interface DeviantArtGalleryFolders {
     name: string;
     size?: number;
     deviations?: DeviantArtDeviation[];
-  };
+  }[];
   has_more: boolean;
   next_offset: number | null;
 }
