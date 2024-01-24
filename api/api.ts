@@ -6,7 +6,12 @@ export default class Api {
   /**
    * Gets an endpoint from the DeviantArt api.
    */
-  public async get(endpoint: string, args?: { params: Record<string, string | number | boolean | undefined | string[]> }) {
+  public async get(
+    endpoint: string,
+    args?: {
+      params: Record<string, string | number | boolean | undefined | string[]>;
+    },
+  ) {
     const url = new URL(apiURL + endpoint);
 
     url.searchParams.set("access_token", this.accessToken);
@@ -17,7 +22,7 @@ export default class Api {
             for (const item of pair[1]) {
               url.searchParams.set(pair[0] + "[]", item.toString());
             }
-            console.log(url.searchParams)
+            console.log(url.searchParams);
           } else {
             url.searchParams.set(pair[0], pair[1].toString());
           }
@@ -29,12 +34,15 @@ export default class Api {
       r,
     ) => r.json());
     return result;
-  };
+  }
 
   /**
    * Used internally to get the access token in [[login]]
    */
-  public static getNoLogin = async (endpoint: string, params: Record<string, string | number | boolean | undefined>) => {
+  public static getNoLogin = async (
+    endpoint: string,
+    params: Record<string, string | number | boolean | undefined>,
+  ) => {
     const url = new URL(apiURL + endpoint);
     for (const pair of Object.entries(params)) {
       if (pair[1] !== undefined) {

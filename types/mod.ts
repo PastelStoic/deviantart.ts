@@ -8,8 +8,13 @@ export * from "./CommentTypes.ts";
 export * from "./StashTypes.ts";
 
 export type DeviantArtError = {
-    error: "invalid_request" | "unauthorized" | "unverified_account" | "server_error" | "version_error";
-    error_description: string;
-    error_code: number;
-    status: string;
-}
+  error:
+    | "invalid_request"
+    | "unauthorized"
+    | "unverified_account"
+    | "server_error"
+    | "version_error";
+  error_description: string;
+  error_code: number;
+  status: string;
+};

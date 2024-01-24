@@ -1,5 +1,5 @@
 import { assert } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import { login, env } from "./login.ts";
+import { env, login } from "./login.ts";
 
 Deno.test("Util", async function (t) {
   const deviantArt = await login();

@@ -1,5 +1,5 @@
 import { assert } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import { login, env } from "./login.ts";
+import { env, login } from "./login.ts";
 
 Deno.test("Deviation", async (t) => {
   const deviantArt = await login();
@@ -36,7 +36,7 @@ Deno.test("Deviation", async (t) => {
     const result = await deviantArt.deviation.metaData({
       deviationids: [env.DEVIANTART_TEST_DEVIATION_CONTENT],
     });
-    console.log(result)
+    console.log(result);
     assert(Object.hasOwn(result, "metadata"));
   });
 
