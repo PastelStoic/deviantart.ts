@@ -6,26 +6,27 @@ export default class Api {
   /**
    * Gets an endpoint from the DeviantArt api.
    */
-  public get = async (endpoint: string, params?: { params: Record<string, string | number | boolean | undefined | string[]> }) => {
-    if (!params) params = {params: {}};
-    params.params.access_token = this.accessToken;
+  public async get(endpoint: string, args?: { params: Record<string, string | number | boolean | undefined | string[]> }) {
     const url = new URL(apiURL + endpoint);
 
-    for (const pair of Object.entries(params.params)) {
-      if (pair[1] !== undefined) {
-        if (Array.isArray(pair[1])) {
-          for (const item of pair[1]) {
-            url.searchParams.set(encodeURIComponent(pair[0] + "[]"), item.toString());
+    url.searchParams.set("access_token", this.accessToken);
+    if (args) {
+      for (const pair of Object.entries(args.params)) {
+        if (pair[1] !== undefined) {
+          if (Array.isArray(pair[1])) {
+            for (const item of pair[1]) {
+              url.searchParams.set(encodeURIComponent(pair[0] + "[]"), item.toString());
+            }
+          } else {
+            url.searchParams.set(pair[0], pair[1].toString());
           }
-        } else {
-          url.searchParams.set(pair[0], pair[1].toString());
         }
       }
     }
 
-    const result = await fetch(url).then(async (
+    const result = await fetch(url).then((
       r,
-    ) => await r.json());
+    ) => r.json());
     return result;
   };
 
