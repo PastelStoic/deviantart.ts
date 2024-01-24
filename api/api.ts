@@ -15,8 +15,9 @@ export default class Api {
         if (pair[1] !== undefined) {
           if (Array.isArray(pair[1])) {
             for (const item of pair[1]) {
-              url.searchParams.set(encodeURIComponent(pair[0] + "[]"), item.toString());
+              url.searchParams.set(pair[0] + "[]", item.toString());
             }
+            console.log(url.searchParams)
           } else {
             url.searchParams.set(pair[0], pair[1].toString());
           }
