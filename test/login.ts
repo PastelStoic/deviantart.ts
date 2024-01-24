@@ -12,6 +12,7 @@ const envSchema = z.object({
   DEVIANTART_TEST_STASH_STACK_ID: z.string().optional(),
   DEVIANTART_TEST_STASH_ITEM_ID: z.string().optional(),
   DEVIANTART_TEST_DEVIATION_CONTENT: z.string({ required_error: "Your env for testing must include the id of a literature or journal deviation." }),
+  DEVIANTART_TEST_DEVIATION_DOWNLOAD: z.string(),
 });
 
 export const env = await envSchema.parseAsync(loadedEnv);

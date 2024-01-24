@@ -20,7 +20,7 @@ Deno.test("Deviation", async (t) => {
 
   await t.step("should get the file download", async () => {
     const result = await deviantArt.deviation.download({
-      deviationid: env.DEVIANTART_TEST_DEVIATION_CONTENT,
+      deviationid: env.DEVIANTART_TEST_DEVIATION_DOWNLOAD,
     });
     assert(Object.hasOwn(result, "filesize"));
   });
@@ -36,6 +36,7 @@ Deno.test("Deviation", async (t) => {
     const result = await deviantArt.deviation.metaData({
       deviationids: [env.DEVIANTART_TEST_DEVIATION_CONTENT],
     });
+    console.log(result)
     assert(Object.hasOwn(result, "metadata"));
   });
 
