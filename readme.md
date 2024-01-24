@@ -315,3 +315,10 @@ async function useAPI() {
     extendedRSSDeviations[0].author.profile_pic
 }
 ```
+
+#### Testing
+To run local tests, you'll need to set env variables of known-valid deviations or users. The ID of any deviation 
+can be obtained from its webpage in the console using 
+```js
+document.querySelector("meta[property=\"da:appurl\"]")
+```
