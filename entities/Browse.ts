@@ -1,6 +1,5 @@
 import api from "../api/api.ts";
 import {
-  DeviantArtCategoryTree,
   DeviantArtDailySearch,
   DeviantArtMoreLikeThisPreview,
   DeviantArtQueryResults,
