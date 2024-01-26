@@ -1,19 +1,20 @@
-<div align="left">
-  <p>
-    <a href="https://tenpi.github.io/deviantart.ts/"><img src="https://raw.githubusercontent.com/Tenpi/deviantart.ts/master/images/deviantart.tslogo.gif" width="500" /></a>
-  </p>
-  <p>
-    <a href="https://nodei.co/npm/deviantart.ts/"><img src="https://nodei.co/npm/deviantart.ts.png" /></a>
-  </p>
-</div>
-
 ### About
 
 This is a wrapper for the DeviantArt API that covers all of the public
 endpoints, includes typings, and various utility functions to make finding
 deviations easier.
 
-### Insall
+I've picked this up from [Tenpi](github.com/Tenpi/deviantart.ts) after it was
+abandoned in order to fix several bugs with the typing - notably, several
+endpoints return arrays, rather than the single items the TS types suggest. I've
+also switched to using Deno for testing, used native fetch instead of axios, and
+dropped depreciated endpoints.
+
+I'm in the process of updating the docs, but I expect it to take a while.
+
+Also on my to-do list are Zod types for validation.
+
+### Install
 
 ```ts
 npm install deviantart.ts
