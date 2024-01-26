@@ -20,7 +20,10 @@ const envSchema = z.object({
     required_error:
       "Your env for testing must include the id of a literature or journal deviation.",
   }),
-  DEVIANTART_TEST_DEVIATION_DOWNLOAD: z.string(),
+  DEVIANTART_TEST_DEVIATION_DOWNLOAD: z.string({
+    required_error:
+      "Your env for testing must include the id of a downloadable deviation.",
+  }),
 });
 
 export const env = await envSchema.parseAsync(loadedEnv);
