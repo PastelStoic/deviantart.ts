@@ -49,7 +49,7 @@ export class Gallery {
       params,
     });
     return result as Promise<DeviantArtGalleryAll>;
-  }
+  };
 
   public allAsyncInterator(params: GalleryAllParams) {
     return toAsyncIterator(params, this.all);

@@ -46,7 +46,7 @@ export default class DeviantArt {
     }) as DeviantArtAuth;
     DeviantArt.accessToken = auth.access_token;
     return new DeviantArt();
-  };
+  }
 }
 
 export * from "./types/mod.ts";
