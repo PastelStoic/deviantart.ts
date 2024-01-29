@@ -1,4 +1,4 @@
-import api from "../api/api.ts";
+import { apiGet } from "../api/api.ts";
 import {
   DeviantArtDailySearch,
   DeviantArtMoreLikeThisPreview,
@@ -8,9 +8,7 @@ import {
 } from "../types/BrowseTypes.ts";
 
 export class Browse {
-  private readonly api: api;
   constructor(private readonly accessToken: string) {
-    this.api = new api(this.accessToken);
   }
 
   /**
@@ -26,11 +24,15 @@ export class Browse {
       mature_content?: boolean;
     },
   ) {
-    const result = await this.api.get(`api/v1/oauth2/browse/morelikethis`, {
-      params,
-    });
+    const result = await apiGet(
+      `api/v1/oauth2/browse/morelikethis`,
+      this.accessToken,
+      {
+        params,
+      },
+    );
     return result as Promise<DeviantArtSearchResults>;
-  };
+  }
 
   /**
    * Same as [[moreLikeThis]] but returns the preview result.
@@ -38,12 +40,13 @@ export class Browse {
   public async moreLikeThisPreview(
     params: { seed: string; expand?: string; mature_content?: boolean },
   ) {
-    const result = await this.api.get(
+    const result = await apiGet(
       `api/v1/oauth2/browse/morelikethis/preview`,
+      this.accessToken,
       { params },
     );
     return result as Promise<DeviantArtMoreLikeThisPreview>;
-  };
+  }
 
   /**
    * Fetches daily deviations for today or a certain date if it is specified.
@@ -51,11 +54,15 @@ export class Browse {
   public async daily(
     params: { date?: string; expand?: string; mature_content?: boolean },
   ) {
-    const result = await this.api.get(`api/v1/oauth2/browse/dailydeviations`, {
-      params,
-    });
+    const result = await apiGet(
+      `api/v1/oauth2/browse/dailydeviations`,
+      this.accessToken,
+      {
+        params,
+      },
+    );
     return result as Promise<DeviantArtDailySearch>;
-  };
+  }
 
   /**
    * Searches deviations using a tag.
@@ -69,9 +76,11 @@ export class Browse {
       mature_content?: boolean;
     },
   ) {
-    const result = await this.api.get(`api/v1/oauth2/browse/tags`, { params });
+    const result = await apiGet(`api/v1/oauth2/browse/tags`, this.accessToken, {
+      params,
+    });
     return result as Promise<DeviantArtQueryResults>;
-  };
+  }
 
   /**
    * Searches a tag for similar tags.
@@ -79,11 +88,15 @@ export class Browse {
   public async tagSearch(
     params: { tag_name: string; mature_content?: boolean },
   ) {
-    const result = await this.api.get(`api/v1/oauth2/browse/tags/search`, {
-      params,
-    });
+    const result = await apiGet(
+      `api/v1/oauth2/browse/tags/search`,
+      this.accessToken,
+      {
+        params,
+      },
+    );
     return result as Promise<DeviantArtTagSearch>;
-  };
+  }
 
   /**
    * Searches the journals of a user.
@@ -98,11 +111,15 @@ export class Browse {
       mature_content?: boolean;
     },
   ) {
-    const result = await this.api.get(`api/v1/oauth2/browse/user/journals`, {
-      params,
-    });
+    const result = await apiGet(
+      `api/v1/oauth2/browse/user/journals`,
+      this.accessToken,
+      {
+        params,
+      },
+    );
     return result as Promise<DeviantArtSearchResults>;
-  };
+  }
 
   /**
    * Searches for newest deviations.
@@ -117,11 +134,15 @@ export class Browse {
       mature_content?: boolean;
     },
   ) {
-    const result = await this.api.get(`api/v1/oauth2/browse/newest`, {
-      params,
-    });
+    const result = await apiGet(
+      `api/v1/oauth2/browse/newest`,
+      this.accessToken,
+      {
+        params,
+      },
+    );
     return result as Promise<DeviantArtQueryResults>;
-  };
+  }
 
   /**
    * Searches for popular deviations.
@@ -137,11 +158,15 @@ export class Browse {
       mature_content?: boolean;
     },
   ) {
-    const result = await this.api.get(`api/v1/oauth2/browse/popular`, {
-      params,
-    });
+    const result = await apiGet(
+      `api/v1/oauth2/browse/popular`,
+      this.accessToken,
+      {
+        params,
+      },
+    );
     return result as Promise<DeviantArtQueryResults>;
-  };
+  }
 
   /**
    * Searches for hot deviations.
@@ -155,9 +180,11 @@ export class Browse {
       mature_content?: boolean;
     },
   ) {
-    const result = await this.api.get(`api/v1/oauth2/browse/hot`, { params });
+    const result = await apiGet(`api/v1/oauth2/browse/hot`, this.accessToken, {
+      params,
+    });
     return result as Promise<DeviantArtSearchResults>;
-  };
+  }
 
   /**
    * Searches for undiscovered deviations.
@@ -171,9 +198,13 @@ export class Browse {
       mature_content?: boolean;
     },
   ) {
-    const result = await this.api.get(`api/v1/oauth2/browse/undiscovered`, {
-      params: params ?? {},
-    });
+    const result = await apiGet(
+      `api/v1/oauth2/browse/undiscovered`,
+      this.accessToken,
+      {
+        params: params ?? {},
+      },
+    );
     return result as Promise<DeviantArtSearchResults>;
-  };
+  }
 }

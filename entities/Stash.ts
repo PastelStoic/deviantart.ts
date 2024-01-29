@@ -1,10 +1,8 @@
-import api from "../api/api.ts";
+import { apiGet } from "../api/api.ts";
 import { DeviantArtStash, DeviantArtStashItem } from "../types/mod.ts";
 
 export class Stash {
-  private readonly api: api;
   constructor(private readonly accessToken: string) {
-    this.api = new api(this.accessToken);
   }
 
   /**
@@ -13,11 +11,15 @@ export class Stash {
   public async get(
     params: { stackid: string; mature_content?: boolean },
   ) {
-    const result = await this.api.get(`api/v1/oauth2/stash/${params.stackid}`, {
-      params,
-    });
+    const result = await apiGet(
+      `api/v1/oauth2/stash/${params.stackid}`,
+      this.accessToken,
+      {
+        params,
+      },
+    );
     return result as Promise<DeviantArtStash>;
-  };
+  }
 
   /**
    * Fetches an item using its item id.
@@ -31,10 +33,11 @@ export class Stash {
       mature_content?: boolean;
     },
   ) {
-    const result = await this.api.get(
+    const result = await apiGet(
       `api/v1/oauth2/stash/item/${params.itemid}`,
+      this.accessToken,
       { params },
     );
     return result as Promise<DeviantArtStashItem>;
-  };
+  }
 }

@@ -1,4 +1,4 @@
-import api from "../api/api.ts";
+import { apiGet } from "../api/api.ts";
 import {
   DeviantArtFriendSearch,
   DeviantArtStatus,
@@ -9,9 +9,7 @@ import {
 } from "../types/mod.ts";
 
 export class User {
-  private readonly api: api;
   constructor(private readonly accessToken: string) {
-    this.api = new api(this.accessToken);
   }
 
   /**
@@ -27,12 +25,13 @@ export class User {
     },
   ) {
     if (!params.username) params.username = "";
-    const result = await this.api.get(
+    const result = await apiGet(
       `api/v1/oauth2/user/friends/${params.username}`,
+      this.accessToken,
       { params },
     );
     return result as Promise<DeviantArtUserFriends>;
-  };
+  }
 
   /**
    * Searches friends by their username.
@@ -40,11 +39,15 @@ export class User {
   public async friendsSearch(
     params: { query: string; username?: string; mature_content?: boolean },
   ) {
-    const result = await this.api.get(`api/v1/oauth2/user/friends/search`, {
-      params,
-    });
+    const result = await apiGet(
+      `api/v1/oauth2/user/friends/search`,
+      this.accessToken,
+      {
+        params,
+      },
+    );
     return result as Promise<DeviantArtFriendSearch>;
-  };
+  }
 
   /**
    * Gets all of the statuses of the specified user.
@@ -57,11 +60,15 @@ export class User {
       mature_content?: boolean;
     },
   ) {
-    const result = await this.api.get(`api/v1/oauth2/user/statuses/`, {
-      params,
-    });
+    const result = await apiGet(
+      `api/v1/oauth2/user/statuses/`,
+      this.accessToken,
+      {
+        params,
+      },
+    );
     return result as Promise<DeviantArtUserStatuses>;
-  };
+  }
 
   /**
    * Fetches a specific status from its status id.
@@ -69,12 +76,13 @@ export class User {
   public async status(
     params: { statusid: string; mature_content?: boolean },
   ) {
-    const result = await this.api.get(
+    const result = await apiGet(
       `api/v1/oauth2/user/statuses/${params.statusid}`,
+      this.accessToken,
       { params },
     );
     return result as Promise<DeviantArtStatus>;
-  };
+  }
 
   /**
    * Fetches the profile of the specified user.
@@ -89,12 +97,13 @@ export class User {
     },
   ) {
     if (!params.username) params.username = "";
-    const result = await this.api.get(
+    const result = await apiGet(
       `api/v1/oauth2/user/profile/${params.username}`,
+      this.accessToken,
       { params },
     );
     return result as Promise<DeviantArtUserProfile>;
-  };
+  }
 
   /**
    * Fetches all the watchers of the specified user.
@@ -109,10 +118,11 @@ export class User {
     },
   ) {
     if (!params.username) params.username = "";
-    const result = await this.api.get(
+    const result = await apiGet(
       `api/v1/oauth2/user/watchers/${params.username}`,
+      this.accessToken,
       { params },
     );
     return result as Promise<DeviantArtWatchers>;
-  };
+  }
 }

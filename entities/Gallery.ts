@@ -1,14 +1,21 @@
-import api from "../api/api.ts";
+import { apiGet } from "../api/api.ts";
 import {
   DeviantArtGalleryAll,
   DeviantArtGalleryFolders,
   DeviantArtGalleryResult,
 } from "../types/mod.ts";
+import { toAsyncIterator } from "../utilities/toasynciterator.ts";
+
+export type GalleryAllParams = {
+  username?: string;
+  offset?: number;
+  limit?: number;
+  expand?: string;
+  mature_content?: boolean;
+};
 
 export class Gallery {
-  private readonly api: api;
   constructor(private readonly accessToken: string) {
-    this.api = new api(this.accessToken);
   }
 
   /**
@@ -26,28 +33,27 @@ export class Gallery {
     },
   ) {
     if (!params.folderid) params.folderid = "";
-    const result = await this.api.get(
+    const result = await apiGet(
       `api/v1/oauth2/gallery/${params.folderid}`,
+      this.accessToken,
       { params },
     );
     return result as Promise<DeviantArtGalleryResult>;
-  };
+  }
 
   /**
    * Get all of the deviations of a certain user, yourself if none is specified.
    */
-  public async all(
-    params: {
-      username?: string;
-      offset?: number;
-      limit?: number;
-      expand?: string;
-      mature_content?: boolean;
-    },
-  ) {
-    const result = await this.api.get(`api/v1/oauth2/gallery/all`, { params });
+  public async all(params: GalleryAllParams) {
+    const result = await apiGet(`api/v1/oauth2/gallery/all`, this.accessToken, {
+      params,
+    });
     return result as Promise<DeviantArtGalleryAll>;
-  };
+  }
+
+  public allAsyncInterator(params: GalleryAllParams) {
+    return toAsyncIterator(params, this.all);
+  }
 
   /**
    * Get all of the folders of a certain user, or yourself if none is specified.
@@ -62,9 +68,13 @@ export class Gallery {
       mature_content?: boolean;
     },
   ) {
-    const result = await this.api.get(`api/v1/oauth2/gallery/folders`, {
-      params,
-    });
+    const result = await apiGet(
+      `api/v1/oauth2/gallery/folders`,
+      this.accessToken,
+      {
+        params,
+      },
+    );
     return result as Promise<DeviantArtGalleryFolders>;
-  };
+  }
 }

@@ -1,10 +1,8 @@
-import api from "../api/api.ts";
+import { apiGet } from "../api/api.ts";
 import { DeviantArtFolders, DeviantArtSearchResults } from "../types/mod.ts";
 
 export class Collections {
-  private readonly api: api;
   constructor(private readonly accessToken: string) {
-    this.api = new api(this.accessToken);
   }
 
   /**
@@ -20,12 +18,13 @@ export class Collections {
       mature_content?: boolean;
     },
   ) {
-    const result = await this.api.get(
+    const result = await apiGet(
       `api/v1/oauth2/collections/${params.folderid}`,
+      this.accessToken,
       { params },
     );
     return result as Promise<DeviantArtSearchResults>;
-  };
+  }
 
   /**
    * Fetches all the folders of the specified user. Defaults to the authenticated user if none is specified.
@@ -40,9 +39,13 @@ export class Collections {
       mature_content?: boolean;
     },
   ) {
-    const result = await this.api.get(`api/v1/oauth2/collections/folders`, {
-      params,
-    });
+    const result = await apiGet(
+      `api/v1/oauth2/collections/folders`,
+      this.accessToken,
+      {
+        params,
+      },
+    );
     return result as Promise<DeviantArtFolders>;
-  };
+  }
 }

@@ -1,13 +1,11 @@
-import api from "../api/api.ts";
+import { apiGet } from "../api/api.ts";
 import {
   DeviantArtCommentContext,
   DeviantArtCommentSearch,
 } from "../types/mod.ts";
 
 export class Comments {
-  private readonly api: api;
   constructor(private readonly accessToken: string) {
-    this.api = new api(this.accessToken);
   }
 
   /**
@@ -22,12 +20,13 @@ export class Comments {
       mature_content?: boolean;
     },
   ) {
-    const result = await this.api.get(
+    const result = await apiGet(
       `api/v1/oauth2/comments/${params.commentid}/siblings`,
+      this.accessToken,
       { params },
     );
     return result as Promise<DeviantArtCommentContext>;
-  };
+  }
 
   /**
    * Fetches all comments on a certain deviation.
@@ -42,12 +41,13 @@ export class Comments {
       mature_content?: boolean;
     },
   ) {
-    const result = await this.api.get(
+    const result = await apiGet(
       `api/v1/oauth2/comments/deviation/${params.deviationid}`,
+      this.accessToken,
       { params },
     );
     return result as Promise<DeviantArtCommentSearch>;
-  };
+  }
 
   /**
    * Fetches all the comments on a user profile.
@@ -62,12 +62,13 @@ export class Comments {
       mature_content?: boolean;
     },
   ) {
-    const result = await this.api.get(
+    const result = await apiGet(
       `api/v1/oauth2/comments/profile/${params.username}`,
+      this.accessToken,
       { params },
     );
     return result as Promise<DeviantArtCommentSearch>;
-  };
+  }
 
   /**
    * Fetches all the comments on a user status.
@@ -82,10 +83,11 @@ export class Comments {
       mature_content?: boolean;
     },
   ) {
-    const result = await this.api.get(
+    const result = await apiGet(
       `api/v1/oauth2/comments/status/${params.statusid}`,
+      this.accessToken,
       { params },
     );
     return result as Promise<DeviantArtCommentSearch>;
-  };
+  }
 }
