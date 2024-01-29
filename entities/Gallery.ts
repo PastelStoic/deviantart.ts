@@ -4,7 +4,7 @@ import {
   DeviantArtGalleryFolders,
   DeviantArtGalleryResult,
 } from "../types/mod.ts";
-import { toAsyncIterator } from "../utilities/toasynciterator.ts";
+import { buildIteratorOption } from "../utilities/toasynciterator.ts";
 
 export type GalleryAllParams = {
   username?: string;
@@ -44,21 +44,17 @@ export class Gallery {
   /**
    * Get all of the deviations of a certain user, yourself if none is specified.
    */
-  public all = async (params: GalleryAllParams) => {
+  public all = buildIteratorOption(async (params: GalleryAllParams) => {
     const result = await apiGet(`api/v1/oauth2/gallery/all`, this.accessToken, {
       params,
     });
     return result as Promise<DeviantArtGalleryAll>;
-  };
-
-  public allAsyncInterator(params: GalleryAllParams) {
-    return toAsyncIterator(params, this.all);
-  }
+  });
 
   /**
    * Get all of the folders of a certain user, or yourself if none is specified.
    */
-  public async folders(
+  public folders = async (
     params: {
       username?: string;
       calculate_size?: boolean;
@@ -67,7 +63,7 @@ export class Gallery {
       limit?: number;
       mature_content?: boolean;
     },
-  ) {
+  ) => {
     const result = await apiGet(
       `api/v1/oauth2/gallery/folders`,
       this.accessToken,

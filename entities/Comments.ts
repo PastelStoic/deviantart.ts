@@ -31,7 +31,7 @@ export class Comments {
   /**
    * Fetches all comments on a certain deviation.
    */
-  public async deviation(
+  public deviation = async(
     params: {
       deviationid: string;
       commentid?: string;
@@ -40,7 +40,7 @@ export class Comments {
       limit?: number;
       mature_content?: boolean;
     },
-  ) {
+  ) => {
     const result = await apiGet(
       `api/v1/oauth2/comments/deviation/${params.deviationid}`,
       this.accessToken,

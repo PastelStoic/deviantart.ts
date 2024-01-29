@@ -6,6 +6,7 @@ import {
   DeviantArtSearchResults,
   DeviantArtTagSearch,
 } from "../types/BrowseTypes.ts";
+import { buildIteratorOption } from "../utilities/toasynciterator.ts";
 
 export class Browse {
   constructor(private readonly accessToken: string) {
@@ -14,7 +15,7 @@ export class Browse {
   /**
    * Gets similar deviations to the one specified. Requires the deviation id.
    */
-  public async moreLikeThis(
+  public moreLikeThis = buildIteratorOption(async (
     params: {
       seed: string;
       category?: string;
@@ -23,7 +24,7 @@ export class Browse {
       expand?: string;
       mature_content?: boolean;
     },
-  ) {
+  ) => {
     const result = await apiGet(
       `api/v1/oauth2/browse/morelikethis`,
       this.accessToken,
@@ -32,7 +33,7 @@ export class Browse {
       },
     );
     return result as Promise<DeviantArtSearchResults>;
-  }
+  });
 
   /**
    * Same as [[moreLikeThis]] but returns the preview result.
@@ -67,7 +68,7 @@ export class Browse {
   /**
    * Searches deviations using a tag.
    */
-  public async tag(
+  public tag = buildIteratorOption(async (
     params: {
       tag: string;
       offset?: number;
@@ -75,12 +76,12 @@ export class Browse {
       expand?: string;
       mature_content?: boolean;
     },
-  ) {
+  ) => {
     const result = await apiGet(`api/v1/oauth2/browse/tags`, this.accessToken, {
       params,
     });
     return result as Promise<DeviantArtQueryResults>;
-  }
+  })
 
   /**
    * Searches a tag for similar tags.
@@ -101,7 +102,7 @@ export class Browse {
   /**
    * Searches the journals of a user.
    */
-  public async userJournals(
+  public userJournals = buildIteratorOption(async (
     params: {
       username: string;
       featured?: boolean;
@@ -110,7 +111,7 @@ export class Browse {
       expand?: string;
       mature_content?: boolean;
     },
-  ) {
+  ) => {
     const result = await apiGet(
       `api/v1/oauth2/browse/user/journals`,
       this.accessToken,
@@ -119,12 +120,12 @@ export class Browse {
       },
     );
     return result as Promise<DeviantArtSearchResults>;
-  }
+  });
 
   /**
    * Searches for newest deviations.
    */
-  public async newest(
+  public newest = buildIteratorOption(async (
     params: {
       category_path?: string;
       q?: string;
@@ -133,7 +134,7 @@ export class Browse {
       expand?: string;
       mature_content?: boolean;
     },
-  ) {
+  ) => {
     const result = await apiGet(
       `api/v1/oauth2/browse/newest`,
       this.accessToken,
@@ -142,12 +143,12 @@ export class Browse {
       },
     );
     return result as Promise<DeviantArtQueryResults>;
-  }
+  })
 
   /**
    * Searches for popular deviations.
    */
-  public async popular(
+  public popular = buildIteratorOption(async (
     params: {
       category_path?: string;
       q?: string;
@@ -157,7 +158,7 @@ export class Browse {
       expand?: string;
       mature_content?: boolean;
     },
-  ) {
+  ) => {
     const result = await apiGet(
       `api/v1/oauth2/browse/popular`,
       this.accessToken,
@@ -166,12 +167,12 @@ export class Browse {
       },
     );
     return result as Promise<DeviantArtQueryResults>;
-  }
+  })
 
   /**
    * Searches for hot deviations.
    */
-  public async hot(
+  public hot = buildIteratorOption(async (
     params: {
       category_path?: string;
       offset?: number;
@@ -179,17 +180,17 @@ export class Browse {
       expand?: string;
       mature_content?: boolean;
     },
-  ) {
+  ) => {
     const result = await apiGet(`api/v1/oauth2/browse/hot`, this.accessToken, {
       params,
     });
     return result as Promise<DeviantArtSearchResults>;
-  }
+  });
 
   /**
    * Searches for undiscovered deviations.
    */
-  public async undiscovered(
+  public undiscovered = buildIteratorOption(async (
     params?: {
       category_path?: string;
       offset?: number;
@@ -197,7 +198,7 @@ export class Browse {
       expand?: string;
       mature_content?: boolean;
     },
-  ) {
+  ) => {
     const result = await apiGet(
       `api/v1/oauth2/browse/undiscovered`,
       this.accessToken,
@@ -206,5 +207,5 @@ export class Browse {
       },
     );
     return result as Promise<DeviantArtSearchResults>;
-  }
+  })
 }

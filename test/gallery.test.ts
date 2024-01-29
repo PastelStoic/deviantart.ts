@@ -5,7 +5,7 @@ Deno.test("Gallery", async (t) => {
   const deviantArt = await login();
 
   await t.step("should get all deviations of a user", async () => {
-    const result = await deviantArt.gallery.all({
+    const result = await deviantArt.gallery.all.get({
       username: env.DEVIANTART_TEST_USER,
     });
     assert(Object.hasOwn(result, "results"));
@@ -13,7 +13,7 @@ Deno.test("Gallery", async (t) => {
 
   await t.step("async iterator should work", async () => {
     for await (
-      const result of deviantArt.gallery.allAsyncInterator({
+      const result of deviantArt.gallery.all.toAsyncIterator({
         username: env.DEVIANTART_TEST_USER,
       })
     ) {

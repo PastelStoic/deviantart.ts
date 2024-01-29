@@ -14,7 +14,7 @@ Deno.test("Browse", async (t) => {
   });
 
   await t.step("should get hot deviations", async () => {
-    const result = await deviantArt.browse.hot({
+    const result = await deviantArt.browse.hot.get({
       category_path: "/digitalart",
       offset: 1,
       limit: 20,
@@ -24,7 +24,7 @@ Deno.test("Browse", async (t) => {
   });
 
   await t.step("should get more like this", async () => {
-    const result = await deviantArt.browse.moreLikeThis({
+    const result = await deviantArt.browse.moreLikeThis.get({
       seed: env.DEVIANTART_TEST_DEVIATION_CONTENT,
     });
     assert(Object.hasOwn(result, "results"));
@@ -38,17 +38,17 @@ Deno.test("Browse", async (t) => {
   });
 
   await t.step("should get newest deviations", async () => {
-    const result = await deviantArt.browse.newest({ q: "anime" });
+    const result = await deviantArt.browse.newest.get({ q: "anime" });
     assert(Object.hasOwn(result, "results"));
   });
 
   await t.step("should get popular deviations", async () => {
-    const result = await deviantArt.browse.popular({ q: "anime" });
+    const result = await deviantArt.browse.popular.get({ q: "anime" });
     assert(Object.hasOwn(result, "results"));
   });
 
   await t.step("should get deviations from a tag", async () => {
-    const result = await deviantArt.browse.tag({ tag: "kawaii" });
+    const result = await deviantArt.browse.tag.get({ tag: "kawaii" });
     assert(Object.hasOwn(result, "results"));
   });
 
@@ -58,12 +58,12 @@ Deno.test("Browse", async (t) => {
   });
 
   await t.step("should get undiscovered deviations", async () => {
-    const result = await deviantArt.browse.undiscovered();
+    const result = await deviantArt.browse.undiscovered.get({});
     assert(Object.hasOwn(result, "results"));
   });
 
   await t.step("should get user journals", async () => {
-    const result = await deviantArt.browse.userJournals({
+    const result = await deviantArt.browse.userJournals.get({
       username: "fhilippe124",
     });
     assert(Object.hasOwn(result, "results"));
