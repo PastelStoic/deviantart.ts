@@ -10,9 +10,9 @@ export class Stash {
   /**
    * Fetches a stash from its stack id.
    */
-  public get = async (
+  public async get(
     params: { stackid: string; mature_content?: boolean },
-  ) => {
+  ) {
     const result = await this.api.get(`api/v1/oauth2/stash/${params.stackid}`, {
       params,
     });
@@ -22,7 +22,7 @@ export class Stash {
   /**
    * Fetches an item using its item id.
    */
-  public item = async (
+  public async item(
     params: {
       itemid: string;
       ext_submission?: boolean;
@@ -30,7 +30,7 @@ export class Stash {
       ext_stats?: boolean;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     const result = await this.api.get(
       `api/v1/oauth2/stash/item/${params.itemid}`,
       { params },

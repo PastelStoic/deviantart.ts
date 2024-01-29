@@ -17,7 +17,7 @@ export class Deviation {
   /**
    * Gets a deviation from its deviation id.
    */
-  public get = async (params: { deviationid: string; expand?: string }) => {
+  public async get(params: { deviationid: string; expand?: string }) {
     const result = await this.api.get(
       `api/v1/oauth2/deviation/${params.deviationid}`,
       { params },
@@ -47,9 +47,9 @@ export class Deviation {
   /**
    * Get a list of users who favorited the deviation.
    */
-  public whoFaved = async (
+  public async whoFaved(
     params: { deviationid: string; offset?: number; limit?: number },
-  ) => {
+  ) {
     const result = await this.api.get(`api/v1/oauth2/deviation/whofaved`, {
       params,
     });
@@ -59,9 +59,9 @@ export class Deviation {
   /**
    * Fetch the full data of a deviation.
    */
-  public content = async (
+  public async content(
     params: { deviationid: string; mature_content?: boolean },
-  ) => {
+  ) {
     const result = await this.api.get(`api/v1/oauth2/deviation/content`, {
       params,
     });
@@ -71,9 +71,9 @@ export class Deviation {
   /**
    * Fetches the file download of a deviation, if available.
    */
-  public download = async (
+  public async download(
     params: { deviationid: string; mature_content?: boolean },
-  ) => {
+  ) {
     const result = await this.api.get(
       `api/v1/oauth2/deviation/download/${params.deviationid}`,
       { params },
@@ -84,7 +84,7 @@ export class Deviation {
   /**
    * Fetches the embedded content in a deviation.
    */
-  public embeddedContent = async (
+  public async embeddedContent(
     params: {
       deviationid: string;
       offset_deviationid?: string;
@@ -92,7 +92,7 @@ export class Deviation {
       limit?: number;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     const result = await this.api.get(
       `api/v1/oauth2/deviation/embeddedcontent`,
       { params },

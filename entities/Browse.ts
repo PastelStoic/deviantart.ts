@@ -16,7 +16,7 @@ export class Browse {
   /**
    * Gets similar deviations to the one specified. Requires the deviation id.
    */
-  public moreLikeThis = async (
+  public async moreLikeThis(
     params: {
       seed: string;
       category?: string;
@@ -25,7 +25,7 @@ export class Browse {
       expand?: string;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     const result = await this.api.get(`api/v1/oauth2/browse/morelikethis`, {
       params,
     });
@@ -35,9 +35,9 @@ export class Browse {
   /**
    * Same as [[moreLikeThis]] but returns the preview result.
    */
-  public moreLikeThisPreview = async (
+  public async moreLikeThisPreview(
     params: { seed: string; expand?: string; mature_content?: boolean },
-  ) => {
+  ) {
     const result = await this.api.get(
       `api/v1/oauth2/browse/morelikethis/preview`,
       { params },
@@ -48,9 +48,9 @@ export class Browse {
   /**
    * Fetches daily deviations for today or a certain date if it is specified.
    */
-  public daily = async (
+  public async daily(
     params: { date?: string; expand?: string; mature_content?: boolean },
-  ) => {
+  ) {
     const result = await this.api.get(`api/v1/oauth2/browse/dailydeviations`, {
       params,
     });
@@ -60,7 +60,7 @@ export class Browse {
   /**
    * Searches deviations using a tag.
    */
-  public tag = async (
+  public async tag(
     params: {
       tag: string;
       offset?: number;
@@ -68,7 +68,7 @@ export class Browse {
       expand?: string;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     const result = await this.api.get(`api/v1/oauth2/browse/tags`, { params });
     return result as Promise<DeviantArtQueryResults>;
   };
@@ -76,9 +76,9 @@ export class Browse {
   /**
    * Searches a tag for similar tags.
    */
-  public tagSearch = async (
+  public async tagSearch(
     params: { tag_name: string; mature_content?: boolean },
-  ) => {
+  ) {
     const result = await this.api.get(`api/v1/oauth2/browse/tags/search`, {
       params,
     });
@@ -88,7 +88,7 @@ export class Browse {
   /**
    * Searches the journals of a user.
    */
-  public userJournals = async (
+  public async userJournals(
     params: {
       username: string;
       featured?: boolean;
@@ -97,7 +97,7 @@ export class Browse {
       expand?: string;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     const result = await this.api.get(`api/v1/oauth2/browse/user/journals`, {
       params,
     });
@@ -107,7 +107,7 @@ export class Browse {
   /**
    * Searches for newest deviations.
    */
-  public newest = async (
+  public async newest(
     params: {
       category_path?: string;
       q?: string;
@@ -116,7 +116,7 @@ export class Browse {
       expand?: string;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     const result = await this.api.get(`api/v1/oauth2/browse/newest`, {
       params,
     });
@@ -126,7 +126,7 @@ export class Browse {
   /**
    * Searches for popular deviations.
    */
-  public popular = async (
+  public async popular(
     params: {
       category_path?: string;
       q?: string;
@@ -136,7 +136,7 @@ export class Browse {
       expand?: string;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     const result = await this.api.get(`api/v1/oauth2/browse/popular`, {
       params,
     });
@@ -146,7 +146,7 @@ export class Browse {
   /**
    * Searches for hot deviations.
    */
-  public hot = async (
+  public async hot(
     params: {
       category_path?: string;
       offset?: number;
@@ -154,7 +154,7 @@ export class Browse {
       expand?: string;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     const result = await this.api.get(`api/v1/oauth2/browse/hot`, { params });
     return result as Promise<DeviantArtSearchResults>;
   };
@@ -162,7 +162,7 @@ export class Browse {
   /**
    * Searches for undiscovered deviations.
    */
-  public undiscovered = async (
+  public async undiscovered(
     params?: {
       category_path?: string;
       offset?: number;
@@ -170,7 +170,7 @@ export class Browse {
       expand?: string;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     const result = await this.api.get(`api/v1/oauth2/browse/undiscovered`, {
       params: params ?? {},
     });

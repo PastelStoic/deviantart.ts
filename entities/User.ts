@@ -17,7 +17,7 @@ export class User {
   /**
    * Gets all of the friends of the specified user, or yourself if none is specified.
    */
-  public friends = async (
+  public async friends(
     params: {
       username?: string;
       offset?: number;
@@ -25,7 +25,7 @@ export class User {
       expand?: string;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     if (!params.username) params.username = "";
     const result = await this.api.get(
       `api/v1/oauth2/user/friends/${params.username}`,
@@ -37,9 +37,9 @@ export class User {
   /**
    * Searches friends by their username.
    */
-  public friendsSearch = async (
+  public async friendsSearch(
     params: { query: string; username?: string; mature_content?: boolean },
-  ) => {
+  ) {
     const result = await this.api.get(`api/v1/oauth2/user/friends/search`, {
       params,
     });
@@ -49,14 +49,14 @@ export class User {
   /**
    * Gets all of the statuses of the specified user.
    */
-  public statuses = async (
+  public async statuses(
     params: {
       username?: string;
       offset?: number;
       limit?: number;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     const result = await this.api.get(`api/v1/oauth2/user/statuses/`, {
       params,
     });
@@ -66,9 +66,9 @@ export class User {
   /**
    * Fetches a specific status from its status id.
    */
-  public status = async (
+  public async status(
     params: { statusid: string; mature_content?: boolean },
-  ) => {
+  ) {
     const result = await this.api.get(
       `api/v1/oauth2/user/statuses/${params.statusid}`,
       { params },
@@ -79,7 +79,7 @@ export class User {
   /**
    * Fetches the profile of the specified user.
    */
-  public profile = async (
+  public async profile(
     params: {
       username?: string;
       ext_collections?: boolean;
@@ -87,7 +87,7 @@ export class User {
       expand?: string;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     if (!params.username) params.username = "";
     const result = await this.api.get(
       `api/v1/oauth2/user/profile/${params.username}`,
@@ -99,7 +99,7 @@ export class User {
   /**
    * Fetches all the watchers of the specified user.
    */
-  public watchers = async (
+  public async watchers(
     params: {
       username?: string;
       offset?: number;
@@ -107,7 +107,7 @@ export class User {
       expand?: string;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     if (!params.username) params.username = "";
     const result = await this.api.get(
       `api/v1/oauth2/user/watchers/${params.username}`,

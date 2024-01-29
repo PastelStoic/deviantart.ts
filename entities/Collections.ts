@@ -10,7 +10,7 @@ export class Collections {
   /**
    * Gets all of the deviations in a folder. Unless if you are searching for your own folders, you must specify the username of the user.
    */
-  public get = async (
+  public async get(
     params: {
       folderid: string;
       username?: string;
@@ -19,7 +19,7 @@ export class Collections {
       expand?: string;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     const result = await this.api.get(
       `api/v1/oauth2/collections/${params.folderid}`,
       { params },
@@ -30,7 +30,7 @@ export class Collections {
   /**
    * Fetches all the folders of the specified user. Defaults to the authenticated user if none is specified.
    */
-  public folders = async (
+  public async folders(
     params: {
       username?: string;
       ext_preload?: boolean;
@@ -39,7 +39,7 @@ export class Collections {
       limit?: number;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     const result = await this.api.get(`api/v1/oauth2/collections/folders`, {
       params,
     });

@@ -14,7 +14,7 @@ export class Gallery {
   /**
    * Gets all of the deviations in the folder, requires the folder id.
    */
-  public get = async (
+  public async get(
     params: {
       folderid?: string;
       username?: string;
@@ -24,7 +24,7 @@ export class Gallery {
       expand?: string;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     if (!params.folderid) params.folderid = "";
     const result = await this.api.get(
       `api/v1/oauth2/gallery/${params.folderid}`,
@@ -36,7 +36,7 @@ export class Gallery {
   /**
    * Get all of the deviations of a certain user, yourself if none is specified.
    */
-  public all = async (
+  public async all(
     params: {
       username?: string;
       offset?: number;
@@ -44,7 +44,7 @@ export class Gallery {
       expand?: string;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     const result = await this.api.get(`api/v1/oauth2/gallery/all`, { params });
     return result as Promise<DeviantArtGalleryAll>;
   };
@@ -52,7 +52,7 @@ export class Gallery {
   /**
    * Get all of the folders of a certain user, or yourself if none is specified.
    */
-  public folders = async (
+  public async folders(
     params: {
       username?: string;
       calculate_size?: boolean;
@@ -61,7 +61,7 @@ export class Gallery {
       limit?: number;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     const result = await this.api.get(`api/v1/oauth2/gallery/folders`, {
       params,
     });

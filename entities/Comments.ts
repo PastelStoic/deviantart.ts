@@ -13,7 +13,7 @@ export class Comments {
   /**
    * Fetches all of the replies to a certain comment, requires the comment id.
    */
-  public siblings = async (
+  public async siblings(
     params: {
       commentid: string;
       ext_item?: boolean;
@@ -21,7 +21,7 @@ export class Comments {
       limit?: number;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     const result = await this.api.get(
       `api/v1/oauth2/comments/${params.commentid}/siblings`,
       { params },
@@ -32,7 +32,7 @@ export class Comments {
   /**
    * Fetches all comments on a certain deviation.
    */
-  public deviation = async (
+  public async deviation(
     params: {
       deviationid: string;
       commentid?: string;
@@ -41,7 +41,7 @@ export class Comments {
       limit?: number;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     const result = await this.api.get(
       `api/v1/oauth2/comments/deviation/${params.deviationid}`,
       { params },
@@ -52,7 +52,7 @@ export class Comments {
   /**
    * Fetches all the comments on a user profile.
    */
-  public profile = async (
+  public async profile(
     params: {
       username: string;
       commentid?: string;
@@ -61,7 +61,7 @@ export class Comments {
       limit?: number;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     const result = await this.api.get(
       `api/v1/oauth2/comments/profile/${params.username}`,
       { params },
@@ -72,7 +72,7 @@ export class Comments {
   /**
    * Fetches all the comments on a user status.
    */
-  public status = async (
+  public async status(
     params: {
       statusid: string;
       commentid?: string;
@@ -81,7 +81,7 @@ export class Comments {
       limit?: number;
       mature_content?: boolean;
     },
-  ) => {
+  ) {
     const result = await this.api.get(
       `api/v1/oauth2/comments/status/${params.statusid}`,
       { params },

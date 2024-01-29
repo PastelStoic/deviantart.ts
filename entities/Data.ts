@@ -10,7 +10,7 @@ export class Data {
   /**
    * Returns a list of all countries.
    */
-  public countries = async () => {
+  public async countries() {
     const result = await this.api.get(`api/v1/oauth2/data/countries`);
     return result as Promise<
       { results: Array<{ countryid: number; name: string }> }
@@ -20,7 +20,7 @@ export class Data {
   /**
    * Returns the privacy policy.
    */
-  public privacy = async () => {
+  public async privacy() {
     const result = await this.api.get(`api/v1/oauth2/data/privacy`);
     return result as Promise<DeviantArtData>;
   };
@@ -28,7 +28,7 @@ export class Data {
   /**
    * Returns the submission guidelines.
    */
-  public submission = async () => {
+  public async submission() {
     const result = await this.api.get(`api/v1/oauth2/data/submission`);
     return result as Promise<DeviantArtData>;
   };
@@ -36,7 +36,7 @@ export class Data {
   /**
    * Returns the terms of service.
    */
-  public tos = async () => {
+  public async tos() {
     const result = await this.api.get(`api/v1/oauth2/data/tos`);
     return result as Promise<DeviantArtData>;
   };
