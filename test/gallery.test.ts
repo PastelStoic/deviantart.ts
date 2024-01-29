@@ -22,7 +22,7 @@ Deno.test("Gallery", async (t) => {
   });
 
   await t.step("should get all folders of a user", async () => {
-    const result = await deviantArt.gallery.folders({
+    const result = await deviantArt.gallery.folders.get({
       username: env.DEVIANTART_TEST_USER,
     });
     assert(Object.hasOwn(result, "results"));

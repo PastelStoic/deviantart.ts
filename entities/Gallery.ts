@@ -54,7 +54,7 @@ export class Gallery {
   /**
    * Get all of the folders of a certain user, or yourself if none is specified.
    */
-  public folders = async (
+  public folders = buildIteratorOption(async (
     params: {
       username?: string;
       calculate_size?: boolean;
@@ -72,5 +72,5 @@ export class Gallery {
       },
     );
     return result as Promise<DeviantArtGalleryFolders>;
-  }
+  })
 }
