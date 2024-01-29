@@ -1,4 +1,4 @@
-import api from "./api/api.ts";
+import { apiGetNoLogin } from "./api/api.ts";
 import {
   Browse,
   Collections,
@@ -26,7 +26,6 @@ export default class DeviantArt {
   public collections = new Collections(DeviantArt.accessToken);
   public stash = new Stash(DeviantArt.accessToken);
   public comments = new Comments(DeviantArt.accessToken);
-  public api = new api(DeviantArt.accessToken);
 
   private constructor() {}
 
@@ -34,13 +33,13 @@ export default class DeviantArt {
    * Logs into the DeviantArt API with your client id and token, and retrieves your access token.
    * @returns An instance of the DeviantArt Class.
    */
-  public static login = async (clientId: string, clientSecret: string) => {
+  public static async login(clientId: string, clientSecret: string) {
     if (!clientId || !clientSecret) {
       const missing = clientId ? "clientSecret" : "clientId";
       return Promise.reject(`You must provide a ${missing}. You can get these
             credentials by registering an application at https://www.deviantart.com/developers/`);
     }
-    const auth = await api.getNoLogin("oauth2/token", {
+    const auth = await apiGetNoLogin("oauth2/token", {
       grant_type: "client_credentials",
       client_id: clientId,
       client_secret: clientSecret,
