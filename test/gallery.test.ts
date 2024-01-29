@@ -17,7 +17,7 @@ Deno.test("Gallery", async (t) => {
         username: env.DEVIANTART_TEST_USER,
       })
     ) {
-      assert(Object.hasOwn(result, "results"));
+      assert(Object.hasOwn(result, "deviationid"));
     }
   });
 

@@ -7,12 +7,14 @@ export async function* toAsyncIterator<Tin extends { offset?: number }, Tres>(
     input.offset = nextOffset;
     const res = await pagenated(input);
     nextOffset = res.next_offset;
-    yield res.results;
+    for (const item of res.results) {
+      yield item;
+    }
   }
 }
 
 type PaginationResults<T> = {
-  results: T;
+  results: T[];
   next_offset: number | null;
   has_more: boolean;
 };
