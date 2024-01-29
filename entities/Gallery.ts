@@ -21,7 +21,7 @@ export class Gallery {
   /**
    * Gets all of the deviations in a given folder. If folderid is omitted, queries all folders instead.
    */
-  public async get(
+  public getInFolder = buildIteratorOption(async (
     params: {
       folderid?: string;
       username?: string;
@@ -31,7 +31,7 @@ export class Gallery {
       expand?: string;
       mature_content?: boolean;
     },
-  ) {
+  ) => {
     if (!params.folderid) params.folderid = "";
     const result = await apiGet(
       `api/v1/oauth2/gallery/${params.folderid}`,
@@ -39,7 +39,7 @@ export class Gallery {
       { params },
     );
     return result as Promise<DeviantArtGalleryResult>;
-  }
+  })
 
   /**
    * Get all of the deviations of a certain user, yourself if none is specified.

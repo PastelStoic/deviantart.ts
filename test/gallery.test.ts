@@ -29,7 +29,7 @@ Deno.test("Gallery", async (t) => {
   });
 
   await t.step("should get a folder", async () => {
-    const result = await deviantArt.gallery.get({
+    const result = await deviantArt.gallery.getInFolder.get({
       folderid: env.DEVIANTART_TEST_FOLDER,
     });
     assert(Object.hasOwn(result, "results"));
