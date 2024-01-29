@@ -44,7 +44,7 @@ export class Gallery {
   /**
    * Get all of the deviations of a certain user, yourself if none is specified.
    */
-  public async all(params: GalleryAllParams) {
+  public all = async (params: GalleryAllParams) => {
     const result = await apiGet(`api/v1/oauth2/gallery/all`, this.accessToken, {
       params,
     });
