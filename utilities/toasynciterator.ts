@@ -18,3 +18,11 @@ type PaginationResults<T> = {
   next_offset: number | null;
   has_more: boolean;
 };
+
+export function buildIteratorOption<Tin extends { offset?: number }, Tres>(
+  pagenatable: (input: Tin) => Promise<PaginationResults<Tres>>) {
+  return {
+    get: pagenatable,
+    toAsyncIterator: (input: Tin) => toAsyncIterator(input, pagenatable),
+  }
+}
