@@ -19,7 +19,7 @@ export class Gallery {
   }
 
   /**
-   * Gets all of the deviations in the folder, requires the folder id.
+   * Gets all of the deviations in a given folder. If folderid is omitted, queries all folders instead.
    */
   public async get(
     params: {
