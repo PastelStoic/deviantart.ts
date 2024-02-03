@@ -14,13 +14,19 @@ export interface DeviantArtGalleryAll {
 }
 
 export interface DeviantArtGalleryFolders {
-  results: {
-    folderid: string;
-    parent: string | null;
-    name: string;
-    size?: number;
-    deviations?: DeviantArtDeviation[];
-  }[];
+  results: DeviantArtGalleryObject[];
   has_more: boolean;
   next_offset: number | null;
+}
+
+export interface DeviantArtGalleryObject {
+  folderid: string;
+  parent: string | null;
+  name: string;
+  description: string;
+  size?: number;
+  thumb: DeviantArtDeviation | null;
+  has_subfolders?: boolean;
+  subfolders?: DeviantArtGalleryObject[];
+  deviations?: DeviantArtDeviation[];
 }
