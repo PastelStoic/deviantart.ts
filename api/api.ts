@@ -37,10 +37,10 @@ export async function apiGet(
       if (pair[1] !== undefined) {
         if (Array.isArray(pair[1])) {
           for (const item of pair[1]) {
-            url.searchParams.set(pair[0] + "[]", item.toString());
+            url.searchParams.append(pair[0] + "[]", item.toString());
           }
         } else {
-          url.searchParams.set(pair[0], pair[1].toString());
+          url.searchParams.append(pair[0], pair[1].toString());
         }
       }
     }
