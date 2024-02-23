@@ -36,7 +36,6 @@ Deno.test("Deviation", async (t) => {
     const result = await deviantArt.deviation.metaData({
       deviationids: [env.DEVIANTART_TEST_DEVIATION_CONTENT],
     });
-    console.log(result);
     assert(Object.hasOwn(result, "metadata"));
   });
 

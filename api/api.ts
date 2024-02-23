@@ -39,7 +39,6 @@ export async function apiGet(
           for (const item of pair[1]) {
             url.searchParams.set(pair[0] + "[]", item.toString());
           }
-          console.log(url.searchParams);
         } else {
           url.searchParams.set(pair[0], pair[1].toString());
         }
