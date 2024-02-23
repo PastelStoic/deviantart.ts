@@ -25,7 +25,7 @@ export class Gallery {
     params: {
       folderid?: string;
       username?: string;
-      mode?: string;
+      mode?: "newest" | "popular";
       offset?: number;
       limit?: number;
       expand?: string;
